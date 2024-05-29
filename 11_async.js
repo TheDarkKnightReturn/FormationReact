@@ -12,10 +12,14 @@ const {sleep} = require("./10_promise");
  * 
  */
 
+const usingThen = (cb) => {
+    sleep(2000).then(e => cb(e));
+};
 
-const usingThen = (cb) => sleep.then(cb => cb);
-console.log("usingThen" + usingThen("toto"));
-
+// Exemple d'utilisation :
+usingThen((r) => {
+    console.log("coucou", r);
+});
 /**
  * Créez une fonction asynchrone qui attend 2 seconde puis execute le callback passé en paramètre
  * vous pouvez utiliser la fonction sleep créé précedement: const {sleep} = require("../exercices/10_promise");
@@ -27,15 +31,20 @@ console.log("usingThen" + usingThen("toto"));
  *   - ne pas utiliser .then
  */
 
-const usingAwait = (cb) => {
+const usingAwait = async (cb) => {
+    const result = await sleep(2000);
+    cb(result);
+};
 
-}
-
+// Exemple d'utilisation :
+ usingAwait((r) => {
+        console.log("coucou", r);
+    });
 /**
  * Créez une fonction asynchrone qui effectue un appel api vers l'url passé en paramètre
  * retourne le résultat de la requête (body)
  * 
- * Vous pouvez utiliser axios, mais n'oubliez pas d'installer le package et de l'importer
+ * Vous pouveznpm utiliser axios, mais n'oubliez pas d'installer le package et de l'importer
  * npm install axios
  * 
  * votre réponse doit être un objet json
@@ -44,11 +53,25 @@ const usingAwait = (cb) => {
  */
 
 //décommentez la ligne suivante une fois le package installé
-//const axios = require("axios");
+const axios = require("axios");
 
 const apiResponse = async (url) => {
+    try {
+        const response = await axios.get(url);
+        return response.data; // Retourne les données de la réponse
+    } catch (error) {
+        console.log(error);
+        throw error; // Lance à nouveau l'erreur pour que le gestionnaire d'erreurs extérieur puisse le gérer
+    }
+};
 
-}
-
+(async () => {
+    try {
+        const result = await apiResponse("https://jsonplaceholder.typicode.com/todos/1");
+        console.log("coucou", result);
+    } catch (error) {
+        console.log("Une erreur s'est produite:", error);
+    }
+})();
 
 module.exports = {usingThen, usingAwait, apiResponse};

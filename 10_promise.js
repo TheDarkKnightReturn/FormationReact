@@ -8,7 +8,7 @@
 let time = 2000;
 
 const sleep = () => (
-    new Promise(resolve => setTimeout(resolve, time))
+    new Promise(resolve => setTimeout(() => resolve(42), time))
 );
 
 sleep();
