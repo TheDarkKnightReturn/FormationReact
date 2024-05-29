@@ -10,5 +10,6 @@ function ternaire(a , b) {
 }
 
 console.log(ternaire(1, 2));
+console.log(ternaire(5, 1));
 
 module.exports = ternaire;
