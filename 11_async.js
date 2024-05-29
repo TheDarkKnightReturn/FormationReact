@@ -18,10 +18,6 @@ const usingThen = (cb) => {
 
 // Exemple d'utilisation :
 usingThen((r) => {
-<<<<<<< HEAD
-=======
-    console.log("coucou", r);
->>>>>>> d17f033d4f93d65ee4982ac6fd79f0f86314d13d
 });
 /**
  * Créez une fonction asynchrone qui attend 2 seconde puis execute le callback passé en paramètre
@@ -41,10 +37,6 @@ const usingAwait = async (cb) => {
 
 // Exemple d'utilisation :
  usingAwait((r) => {
-<<<<<<< HEAD
-=======
-        console.log("coucou", r);
->>>>>>> d17f033d4f93d65ee4982ac6fd79f0f86314d13d
     });
 /**
  * Créez une fonction asynchrone qui effectue un appel api vers l'url passé en paramètre
@@ -66,10 +58,7 @@ const apiResponse = async (url) => {
         const response = await axios.get(url);
         return response.data; // Retourne les données de la réponse
     } catch (error) {
-<<<<<<< HEAD
-=======
         console.log(error);
->>>>>>> d17f033d4f93d65ee4982ac6fd79f0f86314d13d
         throw error; // Lance à nouveau l'erreur pour que le gestionnaire d'erreurs extérieur puisse le gérer
     }
 };
@@ -77,10 +66,6 @@ const apiResponse = async (url) => {
 (async () => {
     try {
         const result = await apiResponse("https://jsonplaceholder.typicode.com/todos/1");
-<<<<<<< HEAD
-=======
-        console.log("coucou", result);
->>>>>>> d17f033d4f93d65ee4982ac6fd79f0f86314d13d
     } catch (error) {
         console.log("Une erreur s'est produite:", error);
     }
