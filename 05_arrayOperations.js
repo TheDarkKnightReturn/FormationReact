@@ -59,9 +59,14 @@ console.log("list of Items starting with A: ", sum([1, 2, 3, 4]));
  *   - Vous ne pouvez pas utiliser de variable (autre que l'argument de la fonction)
   */
 
-let search = "tata";
-const findUserById = (array, id) => array.find(item => item == id);
-console.log("list of Items find with id " + search + " : ", findUserById(["toto","tata","tutu", "tyty"],search));
+let search = 3;
+const findUserById = (array, id) => array.find(item => item.id == id);
+console.log("list of Items find with id " + search + " : ", findUserById([
+  {id: 1, name: 'John'},
+  {id: 2, name: 'Doe'},
+  {id: 3, name: 'Foo'},
+  {id: 4, name: 'Bar'},
+ ], search));
 
 
 module.exports = {multiplyByTwo, filterNameStartByA, sum, findUserById};
