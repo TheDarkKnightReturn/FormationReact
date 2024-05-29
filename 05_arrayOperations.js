@@ -37,7 +37,7 @@ console.log("list of Items starting with A: ", filterNameStartByA(["Abcd", "BACD
  *   - Vous ne pouvez pas utiliser de variable (autre que l'argument de la fonction)
   */
 
-const sum = (array) => array.reduce((accumulator, currentValue) => accumulator + currentValue);
+const sum = (array) => array ? array.reduce((accumulator, currentValue) => accumulator + currentValue) : 0;
 console.log("list of Items starting with A: ", sum([1, 2, 3, 4]));
 
 /**
