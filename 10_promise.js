@@ -5,8 +5,13 @@
  * utilisez new Promise
  */
 
-const sleep = () => {
+let time = 2000;
 
-};
+const sleep = () => (
+    new Promise(resolve => setTimeout(resolve, time))
+);
+
+sleep();
+
 
 module.exports = {sleep};
