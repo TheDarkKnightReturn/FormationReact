@@ -7,7 +7,7 @@
  *   - le mot clée "function" est interdis
  */
 
-let arrow1 = (a) => { return a++ }
+let arrow1 = (a) => { return a + 1 }
 console.log(arrow1(5));
 /**
  * Déclarer une fonction fléchée qui renvoi l'argument + 1
@@ -18,7 +18,7 @@ console.log(arrow1(5));
  *   - le mot clée "return" est interdis
  */
 
-let arrow2 = (a) => a++;
+let arrow2 = (a) => a + 1;
 console.log(arrow2(15));
 
 module.exports = {arrow1, arrow2};
