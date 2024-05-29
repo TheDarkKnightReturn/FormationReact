@@ -13,16 +13,31 @@
  * documentation: https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Global_Objects/Promise/all
 */
 
+const { sleep } = require("./10_promise");
 const {apiResponse} = require("./11_async");
 
-let promise1 = apiResponse("https://jsonplaceholder.typicode.com/todos/1");
-let promise2 = apiResponse("https://jsonplaceholder.typicode.com/todos/2");
-let promise3 = apiResponse("https://jsonplaceholder.typicode.com/todos/3");
-
 const parallel = () => {
-    Promise.all([promise1, promise2, promise3]).then((values) => {
-        console.log(values);
-      });
-}
+    const urls = [
+        "https://jsonplaceholder.typicode.com/todos/1",
+        "https://jsonplaceholder.typicode.com/todos/2",
+        "https://jsonplaceholder.typicode.com/todos/3"
+    ];
+
+    const promises = urls.map(url => apiResponse(url));
+
+    //await sleep();
+
+    return Promise.all(promises);
+};
+
+// Exemple d'utilisation :
+parallel()
+    .then(results => {
+        console.log(results);
+    })
+    .catch(error => {
+        console.error("Une erreur s'est produite:", error);
+    });
+
 
 module.exports = {parallel};
