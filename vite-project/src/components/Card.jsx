@@ -9,7 +9,7 @@ const Card = ({title, subTitle}) => (
         alt="Bonnie image"
       />
       <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
-        {title}
+        {title ? <h4>{title}</h4> : null}
       </h5>
       <span className="text-sm text-gray-500 dark:text-gray-400">
         {subTitle}
@@ -19,7 +19,7 @@ const Card = ({title, subTitle}) => (
 );
 
 Card.propTypes = {
-    title: PT.string.isRequired,
+    title: PT.string,
     subTitle: PT.node
 }
 
