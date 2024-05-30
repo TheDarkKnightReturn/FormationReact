@@ -60,7 +60,7 @@ console.log("list of Items starting with A: ", sum([1, 2, 3, 4]));
   */
 
 let search = 3;
-const findUserById = (array, id) => array.find(item => item.id == id);
+const findUserById = (array, id) => array.find(item => item.id === id);
 console.log("list of Items find with id " + search + " : ", findUserById([
   {id: 1, name: 'John'},
   {id: 2, name: 'Doe'},
