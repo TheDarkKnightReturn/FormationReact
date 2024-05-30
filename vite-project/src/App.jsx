@@ -14,20 +14,21 @@ function App() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <div className="text-center">
-        <h1 className="m-7 text-3xl font-bold underline">Hello world!</h1>
-        <Card title="Title Props 2" subTitle="subtitle Props 2"></Card>
-        <Card></Card>
-        <Button title="Incrémenter" onCardClick={increment} />
+    <div>
+      <h2 className="m-7 text-3xl font-bold underline">Hello world!</h2>
 
-        <Button title="décrémenter" onCardClick={decrement} />
+      <Button title="Incrémenter" onCardClick={increment} />
 
-        <div className="bg-blue-100 text-blue-800 text-sm font-medium me-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">
-          <p>counter : {counter}</p>
-          <p>{counter >= 0 ? "Positif" : "Négatif"}</p>
-        </div>
-      </div>
+      <Button title="Décrémenter" onCardClick={decrement} />
+      <span
+        className={`${
+          counter >= 0 ? "bg-blue-100" : "bg-red-100"
+        }  text-sm font-medium me-2 px-2.5 py-0.5 rounded `}
+      >
+        {`counter: ${counter} ${counter >= 0 ? "Positif" : "Négatif"}`}
+      </span>
+      <Card title="Title Props 2" subTitle="subtitle Props 2"></Card>
+      <Card></Card>
     </div>
   );
 }

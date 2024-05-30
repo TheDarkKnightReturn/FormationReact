@@ -1,6 +1,6 @@
 import * as PT from "prop-types";
 
-const Card = ({title, subTitle}) => (
+const Card = ({ title, subTitle }) => (
   <div className="m-5 w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
     <div className="flex flex-col items-center pb-10 m-20">
       <img
@@ -19,9 +19,9 @@ const Card = ({title, subTitle}) => (
 );
 
 Card.propTypes = {
-    title: PT.string,
-    subTitle: PT.node
-}
+  title: PT.string,
+  subTitle: PT.node,
+};
 
 export { Card };
 
