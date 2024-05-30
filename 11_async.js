@@ -17,8 +17,7 @@ const usingThen = (cb) => {
 };
 
 // Exemple d'utilisation :
-usingThen((r) => {
-});
+usingThen((r) => console.log(r));
 /**
  * Créez une fonction asynchrone qui attend 2 seconde puis execute le callback passé en paramètre
  * vous pouvez utiliser la fonction sleep créé précedement: const {sleep} = require("../exercices/10_promise");
@@ -36,8 +35,7 @@ const usingAwait = async (cb) => {
 };
 
 // Exemple d'utilisation :
- usingAwait((r) => {
-    });
+ usingAwait((r) => console.log(r));
 /**
  * Créez une fonction asynchrone qui effectue un appel api vers l'url passé en paramètre
  * retourne le résultat de la requête (body)
@@ -55,10 +53,10 @@ const axios = require("axios");
 
 const apiResponse = async (url) => {
     try {
+        //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
         const response = await axios.get(url);
         return response.data; // Retourne les données de la réponse
     } catch (error) {
-        console.log(error);
         throw error; // Lance à nouveau l'erreur pour que le gestionnaire d'erreurs extérieur puisse le gérer
     }
 };
@@ -66,8 +64,9 @@ const apiResponse = async (url) => {
 (async () => {
     try {
         const result = await apiResponse("https://jsonplaceholder.typicode.com/todos/1");
+        console.log(result);
     } catch (error) {
-        console.log("Une erreur s'est produite:", error);
+        console.error("Une erreur s'est produite:", error);
     }
 })();
 
