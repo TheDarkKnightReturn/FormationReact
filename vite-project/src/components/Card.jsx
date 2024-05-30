@@ -8,9 +8,9 @@ const Card = ({ title, subTitle }) => (
         src="/public/vite.svg"
         alt="Bonnie image"
       />
-      <h5 className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
+      <div className="mb-1 text-xl font-medium text-gray-900 dark:text-white">
         {title ? <h4>{title}</h4> : null}
-      </h5>
+      </div>
       <span className="text-sm text-gray-500 dark:text-gray-400">
         {subTitle}
       </span>
