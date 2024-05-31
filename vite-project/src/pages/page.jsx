@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import useUsers from "../contexts/users";
+import axios from "axios";
 
 function Page() {
   const navigate = useNavigate();
@@ -13,8 +14,17 @@ function Page() {
   const [empNumber, setFormEmpNumber] = useState("");
   const [searchTerm, setSearchterm] = useState("");
 
+  useEffect(() => {
+    (async () => {
+      //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
+      const response = await axios.get("http://localhost:3000/users");
+      console.log(response.data);
+      addUsers(response.data); // Retourne les données de la réponse
+    })();
+  }, []);
+
   //Récupération du context souhaité
-  const { users, addUser, removeUser, getUsersByTermSearch } = useUsers();
+  const { users, addUser, removeUser, addUsers } = useUsers();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,6 +33,18 @@ function Page() {
     console.log("Formulaire soumis avec les données :", e);
 
     const id = Math.ceil(Math.random() * 1000000);
+
+    (async () => {
+      //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
+      const response = await axios.post("http://localhost:3000/users", {
+        id: id,
+        name: name,
+        firstName: firstName,
+        empNumber: empNumber,
+      });
+     
+      addUsers(response.data); // Retourne les données de la réponse
+    })();
 
     addUser({
       id: id,
@@ -45,14 +67,19 @@ function Page() {
   const handleDelete = (e, id) => {
     e.preventDefault();
 
+    (async () => {
+      //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
+      const response = await axios.delete(`http://localhost:3000/users/${id}`);
+     
+      addUsers(response.data); // Retourne les données de la réponse
+    })();
+
     removeUser(id);
   };
 
   const handleSearch = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-
-     getUsersByTermSearch(e.target.value);
     }
   };
 
@@ -63,6 +90,7 @@ function Page() {
   const decrement = () => {
     setCounter(counter - 1);
   };
+
   return (
     <div className="m-10">
       <div className="grid grid-cols-2 ">
@@ -129,6 +157,7 @@ function Page() {
                     className="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                   />
                 </div>
+
                 <table className="min-w-full text-center text-sm font-light">
                   <thead className="border-b font-medium dark:border-neutral-500">
                     <tr>
@@ -156,7 +185,7 @@ function Page() {
                                 state: { signupCompleted: true },
                               }}
                             >
-                              {item.name}
+                              {item.name} 
                             </Link>
                           </td>
                           <td>{item.firstName}</td>
@@ -178,11 +207,8 @@ function Page() {
                         </tr>
                       ))
                     ) : (
-                      <tr key="NoResult">
+                      <tr>
                         <td>Pas de résultat</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
                       </tr>
                     )}
                   </tbody>

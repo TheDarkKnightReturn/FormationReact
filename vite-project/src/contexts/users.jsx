@@ -10,6 +10,10 @@ const Provider = ({ children }) => {
     setUsers([...users, newUser]);
   }
 
+  const addUsers = (users) => {
+    setUsers([...users, users]);
+  }
+
   const removeUser = (userId) => {
     setUsers(users.filter(user => user.id !== userId));
   }
@@ -19,10 +23,12 @@ const Provider = ({ children }) => {
   const getUsersByTermSearch = (searchTerm) => {
     if(searchTerm)
         return users.filter(user => user.name.includes(searchTerm));
+    else
+        return users;
   }
 
   return (
-    <ctx.Provider value={{users, addUser, removeUser, getUserById, getUsersByTermSearch}}>
+    <ctx.Provider value={{users, addUser, removeUser, getUserById, getUsersByTermSearch, addUsers}}>
       {children}
     </ctx.Provider>
   )
