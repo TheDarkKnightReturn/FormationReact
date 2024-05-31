@@ -29,33 +29,33 @@ function Page() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Effectuez ici les actions nécessaires à la soumission du formulaire, par exemple, envoyer les données à un serveur
-    console.log("Formulaire soumis avec les données :", e);
+      // Effectuez ici les actions nécessaires à la soumission du formulaire, par exemple, envoyer les données à un serveur
+      console.log("Formulaire soumis avec les données :", e);
 
-    const id = Math.ceil(Math.random() * 1000000);
+      const id = Math.ceil(Math.random() * 1000000);
 
-    (async () => {
-      //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
-      const response = await axios.post("http://localhost:3000/users", {
+      (async () => {
+        //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
+        const response = await axios.post("http://localhost:3000/users", {
+          id: id,
+          name: name,
+          firstName: firstName,
+          empNumber: empNumber,
+        });
+
+        addUsers(response.data); // Retourne les données de la réponse
+      })();
+
+      addUser({
         id: id,
         name: name,
         firstName: firstName,
         empNumber: empNumber,
       });
-     
-      addUsers(response.data); // Retourne les données de la réponse
-    })();
 
-    addUser({
-      id: id,
-      name: name,
-      firstName: firstName,
-      empNumber: empNumber,
-    });
-
-    setFormName("");
-    setFormFirstName("");
-    setFormEmpNumber("");
+      setFormName("");
+      setFormFirstName("");
+      setFormEmpNumber("");
     // navigate(`/users/${id}`);
   };
 
@@ -70,7 +70,7 @@ function Page() {
     (async () => {
       //Si pas de await alors le catch ne sera pas appelé même s'il y a une exception
       const response = await axios.delete(`http://localhost:3000/users/${id}`);
-     
+
       addUsers(response.data); // Retourne les données de la réponse
     })();
 
@@ -185,7 +185,7 @@ function Page() {
                                 state: { signupCompleted: true },
                               }}
                             >
-                              {item.name} 
+                              {item.name}
                             </Link>
                           </td>
                           <td>{item.firstName}</td>
